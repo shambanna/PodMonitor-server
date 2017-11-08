@@ -36,41 +36,38 @@ func RunCmd(w http.ResponseWriter,r *http.Request)  {
 	var data = types.CMD
 	 yaml.Unmarshal(clientYaml, &data)
 	 fmt.Println(data.Cmd)
-	 var cmdArray [10] string;
-	 cmdArray[0]=strings.Split(data.Cmd,":")[0]
 length:=len(strings.Split(data.Cmd,":"))
 var output *exec.Cmd;
 	switch length {
-	case 0:
+	case 0 :
+		json.NewEncoder(w).Encode("No command received !!!")
+		break;
+	case 1 :
 		json.NewEncoder(w).Encode("Invalid argument !!!")
 		break;
-	case 1:
-		json.NewEncoder(w).Encode("Invalid argument !!!")
+	case 2 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1])
 		break;
-	case 2:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1])
+	case 3 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2])
 		break;
-	case 3:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2])
-
+	case 4 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2],strings.Split(data.Cmd," ")[3])
 		break;
-	case 4:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2],strings.Split(data.Cmd,":")[3])
+	case 5 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2],strings.Split(data.Cmd," ")[3],strings.Split(data.Cmd," ")[4])
 		break;
-	case 5:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2],strings.Split(data.Cmd,":")[3],strings.Split(data.Cmd,":")[4])
+	case 6 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2],strings.Split(data.Cmd," ")[3],strings.Split(data.Cmd," ")[4],strings.Split(data.Cmd," ")[5])
 		break;
-	case 6:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2],strings.Split(data.Cmd,":")[3],strings.Split(data.Cmd,":")[4],strings.Split(data.Cmd,":")[5])
+	case 7 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2],strings.Split(data.Cmd," ")[3],strings.Split(data.Cmd," ")[4],strings.Split(data.Cmd," ")[5],strings.Split(data.Cmd," ")[6])
 		break;
-	case 7:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2],strings.Split(data.Cmd,":")[3],strings.Split(data.Cmd,":")[4],strings.Split(data.Cmd,":")[5],strings.Split(data.Cmd,":")[6])
+	case 8 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2],strings.Split(data.Cmd," ")[3],strings.Split(data.Cmd," ")[4],strings.Split(data.Cmd," ")[5],strings.Split(data.Cmd," ")[6],strings.Split(data.Cmd," ")[7])
 		break;
-	case 8:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2],strings.Split(data.Cmd,":")[3],strings.Split(data.Cmd,":")[4],strings.Split(data.Cmd,":")[5],strings.Split(data.Cmd,":")[6],strings.Split(data.Cmd,":")[7])
-		break;
-	case 9:
-		output=exec.Command(cmdArray[0],strings.Split(data.Cmd,":")[1],strings.Split(data.Cmd,":")[2],strings.Split(data.Cmd,":")[3],strings.Split(data.Cmd,":")[4],strings.Split(data.Cmd,":")[5],strings.Split(data.Cmd,":")[6],strings.Split(data.Cmd,":")[7],strings.Split(data.Cmd,":")[8])
+	case 9 :
+		output=exec.Command(strings.Split(data.Cmd," ")[0],strings.Split(data.Cmd," ")[1],strings.Split(data.Cmd," ")[2],strings.Split(data.Cmd," ")[3],strings.Split(data.Cmd," ")[4],strings.Split(data.Cmd," ")[5],strings.Split(data.Cmd," ")[6],strings.Split(data.Cmd," ")[7],strings.Split(data.Cmd," ")[8])
 	break;
 		}
 
